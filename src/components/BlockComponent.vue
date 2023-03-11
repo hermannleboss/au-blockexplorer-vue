@@ -6,7 +6,6 @@ import duration from 'dayjs/plugin/duration'
 
 dayjs.extend(relativeTime); // Load the relativeTime plugin
 dayjs.extend(duration)
-console.log(props.block)
 const props = defineProps(["block"])
 const formattedTimeDiff = ref(0)
 
@@ -29,7 +28,7 @@ onMounted(() => {
 })
 
 const shortAddress = (address) => {
-  return address.substring(0,5) +'...' +address.substring(address.length-5,address.length)
+  return address.substring(0, 5) + '...' + address.substring(address.length - 5, address.length)
 }
 
 </script>
@@ -38,10 +37,13 @@ const shortAddress = (address) => {
   <div class="flex justify-between">
     <div class="flex gap-2">
       <div class="block--header--img"><img src="https://placehold.co/400" alt="Place Holder" class="w-100"></div>
-      <div>{{ block.number }} <br> {{ formattedTimeDiff }}</div>
+      <div>
+        <RouterLink :to="'/bocks/'+ block.number" class="text-blue-700 hover:text-blue-300">{{block.number}}</RouterLink>
+        <br> {{ formattedTimeDiff }}
+      </div>
     </div>
     <div>Fee Recipient {{ shortAddress(block.miner) }}</div>
-    <div>Block Reward {{parseFloat(block.gasUsed._hex/1000000000)}} eth</div>
+    <div>Block Reward {{ parseFloat(block.gasUsed._hex / 1000000000) }} eth</div>
   </div>
 </template>
 
