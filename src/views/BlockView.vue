@@ -1,18 +1,11 @@
 <script setup>
 import {useRoute} from "vue-router";
-import {Alchemy, Network} from "alchemy-sdk";
+import {alchemy} from "@/utils/alchemy";
 import {onMounted, ref} from "vue";
 import {fromNow} from "@/utils/date";
 
 const route = useRoute()
 const block = ref();
-// Optional Config object, but defaults to demo api-key and eth-mainnet.
-const settings = {
-  apiKey: import.meta.env.VITE_API_KEY, // Replace with your Alchemy API Key.
-  network: Network.ETH_MAINNET, // Replace with your network.
-};
-
-const alchemy = new Alchemy(settings);
 const formattedTimeDiff = ref(0)
 
 function loadDate() {
