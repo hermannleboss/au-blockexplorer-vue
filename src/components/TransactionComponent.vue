@@ -28,16 +28,13 @@ const shortAddress = (address) => {
     <div class="w-1/3 flex gap-2">
       <div class="w-[50px]"><img src="https://placehold.co/400" alt="Place Holder" class="w-100"></div>
       <div>
-        <RouterLink :to="'/transactions/'+ transaction.hash" class="text-blue-700 hover:text-blue-300">{{
-            shortAddress(transaction.hash)
-          }}
-        </RouterLink>
+        {{ shortAddress(transaction.hash) }}
         <br> {{ formattedTimeDiff }}
       </div>
     </div>
     <div class="w-1/3">From {{ shortAddress(transaction.from) }}
       <br> To {{ shortAddress(transaction.to) }}
     </div>
-    <div class="w-1/3">Block Reward {{ parseFloat(transaction.value._hex / 1000000000) }} eth</div>
+    <div class="w-1/3">Amount {{ parseFloat(transaction.value._hex / 1000000000) }} eth</div>
   </div>
 </template>
