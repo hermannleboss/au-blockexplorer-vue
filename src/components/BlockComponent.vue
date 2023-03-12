@@ -1,22 +1,12 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import duration from 'dayjs/plugin/duration'
+import {fromNow} from "@/utils/date";
 
-dayjs.extend(relativeTime); // Load the relativeTime plugin
-dayjs.extend(duration)
 const props = defineProps(["block"])
 const formattedTimeDiff = ref(0)
 
 function loadDate() {
-
-  const date1 = new Date(props.block.timestamp * 1000); // Create a Date object from the timestamp
-  const date2 = new Date(Date.now()); // Get the current date
-
-  const diff = dayjs(date2).diff(date1, 'second');  // Get the difference in days
-// Convert the difference to a human-readable string
-  formattedTimeDiff.value = dayjs.duration(diff, 'second').humanize()
+  formattedTimeDiff.value = fromNow(props.block.timestamp)
 }
 
 loadDate()
@@ -36,9 +26,10 @@ const shortAddress = (address) => {
 <template>
   <div class="flex justify-between">
     <div class="flex gap-2">
-      <div class="block--header--img"><img src="https://placehold.co/400" alt="Place Holder" class="w-100"></div>
+      <div class="w-[50px]"><img src="https://placehold.co/400" alt="Place Holder" class="w-100"></div>
       <div>
-        <RouterLink :to="'/bocks/'+ block.number" class="text-blue-700 hover:text-blue-300">{{block.number}}</RouterLink>
+        <RouterLink :to="'/blocks/'+ block.number" class="text-blue-700 hover:text-blue-300">{{ block.number }}
+        </RouterLink>
         <br> {{ formattedTimeDiff }}
       </div>
     </div>
@@ -46,19 +37,3 @@ const shortAddress = (address) => {
     <div>Block Reward {{ parseFloat(block.gasUsed._hex / 1000000000) }} eth</div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.block {
-  display: flex;
-  justify-content: space-between;
-
-  &--header {
-    display: flex;
-
-    &--img {
-      width: 50px;
-      height: 50px;
-    }
-  }
-}
-</style>
