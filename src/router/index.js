@@ -18,11 +18,6 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/blocks',
-      name: 'blocks',
-      component: () => import('../views/BlockListView.vue')
-    },
-    {
       path: '/blocks/:id',
       name: 'blocks details',
       component: () => import('../views/BlockView.vue')
