@@ -18,13 +18,13 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/blocs',
-      name: 'blocs',
+      path: '/blocks',
+      name: 'blocks',
       component: () => import('../views/BlockListView.vue')
     },
     {
-      path: '/blocs/:id',
-      name: 'blocs details',
+      path: '/blocks/:id',
+      name: 'blocks details',
       component: () => import('../views/BlockView.vue')
     }
   ]
