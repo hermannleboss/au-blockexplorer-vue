@@ -33,7 +33,7 @@ const shortAddress = (address) => {
         <br> {{ formattedTimeDiff }}
       </div>
     </div>
-    <div>Fee Recipient {{ shortAddress(block.miner) }}</div>
+    <div>Fee Recipient {{ shortAddress(block.miner) }} <br> {{block.transactions.length}} txns</div>
     <div>Block Reward {{ parseFloat(block.gasUsed._hex / 1000000000) }} eth</div>
   </div>
 </template>
